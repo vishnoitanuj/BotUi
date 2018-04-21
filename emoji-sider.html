@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {font-family: "Lato", sans-serif;}
+
+        /* Style the tab */
+        div.tab {
+            overflow: hidden;
+            background-color: #f1f1f1;
+        }
+
+        /* Style the buttons inside the tab */
+        div.tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+            font-size: 17px;
+        }
+
+        /* Change background color of buttons on hover */
+        div.tab button:hover {
+            background-color: #ddd;
+        }
+
+        /* Create an active/current tablink class */
+        div.tab button.active {
+            background-color: #ccc;
+        }
+
+        /* Style the tab content */
+        .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            -webkit-animation: fadeEffect 1s;
+            animation: fadeEffect 1s;
+        }
+
+        /* Fade in tabs */
+        @-webkit-keyframes fadeEffect {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+
+        @keyframes fadeEffect {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<h3>Fade in Tabs</h3>
+
+<div class="row">
+    <div class="col-lg-4"></div>
+    <div class="col-md-5">
+        <div class="row">
+            <div class="col-lg-4">
+                <img src="https://images-na.ssl-images-amazon.com/images/I/715vwvP5ZEL.png" class="img-responsive" style="margin-top: -1em" width="70" height="70" onclick="openCity(event, 'London')"/>
+                <!--<img src="https://whitney.org/assets/minus-db0b0b9cd73b4c2a27f931ad8e51a5e9ddb734beb737a312c343519233e2d319.svg" width="45"/>-->
+            </div>
+            <div class="col-lg-4">
+                <img src="https://cdn.shopify.com/s/files/1/0185/5092/products/persons-0047.png?v=1369543251" class="img-responsive" width="60" height="60" onclick="openCity(event, 'Paris')"/>
+                <!--<img src="https://whitney.org/assets/minus-db0b0b9cd73b4c2a27f931ad8e51a5e9ddb734beb737a312c343519233e2d319.svg" width="45"/>-->
+            </div>
+            <div class="col-lg-4">
+                <img src="https://i.pinimg.com/originals/f5/8b/ec/f58bece565008387c95ee25036b84ad3.png" class="img-responsive" width="60" height="60" onclick="openCity(event, 'Tokyo')"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
+                <h4>Happy</h4>
+            </div>
+            <div class="col-lg-4">
+                <h4>Satisfied</h4>
+            </div>
+            <div class="col-lg-4">
+                <h4>Not Satisfied</h4>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4"></div>
+</div>
+
+<div class="row">
+    <div class="col-lg-4"></div>
+    <div class="col-md-5">
+        <div id="London" class="tabcontent">
+            <h3>London</h3>
+            <p>London is the capital city of England.</p>
+        </div>
+
+        <div id="Paris" class="tabcontent">
+            <h3>Paris</h3>
+            <p>Paris is the capital of France.</p>
+        </div>
+
+        <div id="Tokyo" class="tabcontent">
+            <h3>Tokyo</h3>
+            <p>Tokyo is the capital of Japan.</p>
+        </div>
+    </div>
+    <div class="col-lg-4"></div>
+</div>
+
+<script>
+    function openCity(evt, cityName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+</script>
+
+</body>
+</html>

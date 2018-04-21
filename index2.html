@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BotUI</title>
+    <meta name="viewport" content="width=device-with, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="./botui/build/botui.min.css" />
+    <link rel="stylesheet" href="./botui/build/botui-theme-default.css" />
+</head>
+<body>
+<div class="botui-app-container" id="hello-world">
+    <bot-ui></bot-ui>
+</div>
+
+<script src="https://cdn.jsdelivr.net/vue/latest/vue.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/botui/build/botui.js"></script>
+<script>
+    var botui = new BotUI('hello-world');
+
+    botui.message.add({
+        content: 'Hello World from bot!'
+    }).then(function () {
+        botui.message.add({
+            delay: 1000,
+            human: true,
+            content: 'Hello World from human!'
+        });
+    }).then(function () {
+        return botui.action.text({
+            action:{
+                placeholder: 'Your Name'
+            }
+        })            ;
+    }).then(function (res) { //get the result
+        botui.message.add({
+            content: 'Your name is '+res.value
+        });
+    }).then(function(){
+        botui.message.add({
+            type: 'embed', //this is 'text' by default
+            content: 'https://www.youtube.com/embed/ZRBH5vHhm4c'
+        });
+    }).then(function(){
+       botui.message.add({
+           delay: 3000,
+           loading: true,
+           content: 'Hello, this is a delayed message shown after a loading message.'
+//       }).then(function (index) {
+//           // do some stuff like ajax, etc.
+//
+//           botui.message.update(index,{
+//               loading: false,
+//               content: 'Hello, this is a message'
+//           });
+       });
+    }).then(function () {
+        botui.action.text({
+            action:{
+                placeholder: 'Enter your text here'
+            }
+        }).then(function(res) { //will be called when it is submitted
+            console.log(res.value);
+        });
+    }).then(function () {
+        botui.action.button({
+            action: [
+                {   //show only one button
+                    text: 'two',
+                    value: 'TWO'
+                }
+            ]
+        }).then(function (res) {
+            console.log(res.value); //will print whatever was typed in the field
+
+        });
+    }).then(function () {
+        botui.action.text({
+            action: {
+                sub_type: 'email',
+                placeholder: 'Enter your email here'
+            }
+        });
+
+    }).then(function () {
+        botui.action.button({
+            autoHide: false,
+            action: [
+                {
+                    text: 'One',
+                    value: 'one'
+                }
+            ]
+        }).then(function (res) {
+            botui.action.hide();
+        });
+    })
+</script>
+</body>
+</html>
